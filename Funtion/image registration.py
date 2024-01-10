@@ -1,3 +1,4 @@
+## 基础算法，得到两幅图像的配准结果
 import cv2
 import numpy as np
 
@@ -40,3 +41,7 @@ registered_image = register_images(image1, image2)
 cv2.imshow('Registered Image', registered_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+# 根据背景图得到的变换矩阵M，对目标图进行图像配准
+M = register_images(image1, image2)    # register_images()函数返回值改为变换矩阵M
+registered_image = cv2.warpPerspective(image3, M, (image4.shape[1], image4.shape[0]))
